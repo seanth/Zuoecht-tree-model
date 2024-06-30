@@ -1,5 +1,5 @@
-//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+//import java.text.SimpleDateFormat;
 //import java.util.Calendar;
 import java.util.Random;
 
@@ -87,7 +87,10 @@ public class Simulation {
 			simParams = SimulationParams.createSimulationParamsEquator();
 			simulation = new Simulation(simParams);
 			canvas.setSimulation(simulation);
-        	simulation.growOnceAndStop();
+			//The static method growOnceAndStop() from the type Simulation should be accessed in a static way.
+			//STH 0630-2024
+        	//simulation.growOnceAndStop();
+			Simulation.growOnceAndStop();
         }
 	}
 	
@@ -98,33 +101,55 @@ public class Simulation {
 			for(int i = 0; i < 5; i++) {
 				simParams = SimulationParams.createSimulationParamsEquator();
 				if (i == 0) {
-					simParams.cameraDistance = 1;
-					simParams.roundLeaves = true;
+					// static field X should be accessed in a staic way. STH 0630-2024
+					//simParams.cameraDistance = 1;
+					//simParams.roundLeaves = true;
+					SimulationParams.cameraDistance = 1;
+					SimulationParams.roundLeaves = true;
 				}
 				if (i == 1) {
-					simParams.cameraDistance = 1;
-					simParams.roundLeaves = false;
+					// static field X should be accessed in a staic way. STH 0630-2024
+					// simParams.cameraDistance = 1;
+					// simParams.roundLeaves = false;
+					SimulationParams.cameraDistance = 1;
+					SimulationParams.roundLeaves = false;
 				}
 				if (i == 2) {
-					simParams.cameraDistance = 1;
-					simParams.roundLeaves = false;
+					// static field X should be accessed in a staic way. STH 0630-2024
+					// simParams.cameraDistance = 1;
+					// simParams.roundLeaves = false;
+					SimulationParams.cameraDistance = 1;
+					SimulationParams.roundLeaves = false;
 					float[] light = {0.1f, 0.6f, 0.1f, 0.1f, 0.1f};
-					simParams.startLightDirections = light;
+					//simParams.startLightDirections = light;
+					SimulationParams.startLightDirections = light;
 				}
 				if (i == 3) {
-					simParams.cameraDistance = 1;
-					simParams.roundLeaves = false;
-					simParams.maxWindSpeed = 30;
+					// static field X should be accessed in a staic way. STH 0630-2024
+					// simParams.cameraDistance = 1;
+					// simParams.roundLeaves = false;
+					//simParams.maxWindSpeed = 30;
+					SimulationParams.cameraDistance = 1;
+					SimulationParams.roundLeaves = false;
+					SimulationParams.maxWindSpeed = 30;
 				}
 				if (i == 4) {
-					simParams.numTreesX = 3;
-					simParams.numTreesY = 3;
-					simParams.roundLeaves = false;
-					simParams.cameraDistance = 2;
+					// static field X should be accessed in a staic way. STH 0630-2024
+					// simParams.numTreesX = 3;
+					// simParams.numTreesY = 3;
+					// simParams.roundLeaves = false;
+					// simParams.cameraDistance = 2;
+					SimulationParams.numTreesX = 3;
+					SimulationParams.numTreesY = 3;
+					SimulationParams.cameraDistance = 2;
+					SimulationParams.roundLeaves = false;
 				}
 				simulation = new Simulation(simParams);
 				canvas.setSimulation(simulation);
-				simulation.growOnceAndStop();
+				//The static method growOnceAndStop() from the type Simulation should be accessed in a static way.
+				//STH 0630-2024
+        		//simulation.growOnceAndStop();
+				Simulation.growOnceAndStop();
 			}
 			
 		}
@@ -135,12 +160,19 @@ public class Simulation {
 		 for (int j = 0; j < 10; j++) {
 			 for(int i = 1; i <= 15; i++) {
 				 simParams = SimulationParams.createSimulationParamsEquator();
-				 simParams.cameraDistance = 2;
-				 simParams.numTreesX = i;
-				 simParams.numTreesY = i;
+				 // static field X should be accessed in a staic way. STH 0630-2024
+				 //  simParams.cameraDistance = 2;
+				 //  simParams.numTreesX = i;
+				 //  simParams.numTreesY = i;
+				 SimulationParams.cameraDistance = 2;
+				 SimulationParams.numTreesX = i;
+				 SimulationParams.numTreesY = i;
 				 simulation = new Simulation(simParams);
 				 canvas.setSimulation(simulation);
-				 simulation.growOnceAndStop();
+				 //The static method growOnceAndStop() from the type Simulation should be accessed in a static way.
+				 //STH 0630-2024
+        		 //simulation.growOnceAndStop();
+				 Simulation.growOnceAndStop();
 				 float totalUptake = 0;
 				 for (Tree tree: simulation.trees) {
 					 totalUptake += tree.totalMass();
@@ -155,12 +187,19 @@ public class Simulation {
 		 for (int j = 0; j < 10; j++) {
 			 for(int i = 1; i <= 15; i++) {
 				 simParams = SimulationParams.createSimulationParamsEquator();
-				 simParams.cameraDistance = 2;
-				 simParams.numTreesX = i;
-				 simParams.numTreesY = i;
+				 // static field X should be accessed in a staic way. STH 0630-2024
+				//  simParams.cameraDistance = 2;
+				//  simParams.numTreesX = i;
+				//  simParams.numTreesY = i;
+				 SimulationParams.cameraDistance = 2;
+				 SimulationParams.numTreesX = i;
+				 SimulationParams.numTreesY = i;
 				 simulation = new Simulation(simParams);
 				 canvas.setSimulation(simulation);
-				 simulation.growOnceAndStop();
+				 //The static method growOnceAndStop() from the type Simulation should be accessed in a static way.
+				 //STH 0630-2024
+        		 //simulation.growOnceAndStop();
+				 Simulation.growOnceAndStop();
 				 float totalTimberMass = 0;
 				 for (Tree tree: simulation.trees) {
 					 totalTimberMass += tree.timberMass();
@@ -177,7 +216,10 @@ public class Simulation {
 		for(int i = 0; i < 30; i++) {
 			simulation = new Simulation(simParams);
 			canvas.setSimulation(simulation);
-        	simulation.growOnceAndStop();
+        	//The static method growOnceAndStop() from the type Simulation should be accessed in a static way.
+			//STH 0630-2024
+        	//simulation.growOnceAndStop();
+			Simulation.growOnceAndStop();
         	simulation.trees.get(0).printCOM();
         }
 	}
@@ -188,7 +230,10 @@ public class Simulation {
 		for(int i = 0; i < 30; i++) {
 			simulation = new Simulation(simParams);
 			canvas.setSimulation(simulation);
-        	simulation.growOnceAndStop();
+        	//The static method growOnceAndStop() from the type Simulation should be accessed in a static way.
+			//STH 0630-2024
+        	//simulation.growOnceAndStop();
+			Simulation.growOnceAndStop();
         	simulation.trees.get(0).printHeightDiameterRelationship();
         }
 	}
@@ -200,7 +245,10 @@ public class Simulation {
 		for(int i = 0; i < 30; i++) {
 			simulation = new Simulation(simParams);
 			canvas.setSimulation(simulation);
-        	simulation.growOnceAndStop();
+        	//The static method growOnceAndStop() from the type Simulation should be accessed in a static way.
+			//STH 0630-2024
+        	//simulation.growOnceAndStop();
+			Simulation.growOnceAndStop();
         	simulation.trees.get(0).printMlMsRelationship();
         }
 	}
@@ -212,7 +260,10 @@ public class Simulation {
 		for(int i = 0; i < 30; i++) {
 			simulation = new Simulation(simParams);
 			canvas.setSimulation(simulation);
-        	simulation.growOnceAndStop();
+        	//The static method growOnceAndStop() from the type Simulation should be accessed in a static way.
+			//STH 0630-2024
+        	//simulation.growOnceAndStop();
+			Simulation.growOnceAndStop();
         	simulation.trees.get(0).printMtMlRelationship();
         }
 	}
