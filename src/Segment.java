@@ -166,16 +166,18 @@ public class Segment {
   
   //uses Monteith photosynthesis equation to calculate the net biomass accumulation of the canopy at each leaf
   float calculateCarbonForLeaf(VoxelGrid voxels) {
-	  float lightPerSquareMeter = sParams.totalSunlightIncident; //light incident on square meter in one year, in MJ
-	  float leafArea = tParams.leafArea(); //set in TreeParams
-	  float lightPerLeaf = lightPerSquareMeter * leafArea * (float)voxels.getLight(end); //amount of light incident on one leaf in a year
-	  float e = tParams.efficiency(); //efficiency of leaves, e in equation, kg/MJ
-	  float fs = tParams.fractionAbsorbed(); //fraction of light the is absorbed by canopy, fs in equation
+		//static field X should be accessed in a static way. STH 0630-2024
+		//float lightPerSquareMeter = sParams.totalSunlightIncident; //light incident on square meter in one year, in MJ
+		float lightPerSquareMeter = SimulationParams.totalSunlightIncident; //light incident on square meter in one year, in MJ	  	
+		float leafArea = tParams.leafArea(); //set in TreeParams
+		float lightPerLeaf = lightPerSquareMeter * leafArea * (float)voxels.getLight(end); //amount of light incident on one leaf in a year
+		float e = tParams.efficiency(); //efficiency of leaves, e in equation, kg/MJ
+		float fs = tParams.fractionAbsorbed(); //fraction of light the is absorbed by canopy, fs in equation
 	  
-	  //Equation for net biomass accumulation from Monteith
-	  float availableCarbon = e * fs * lightPerLeaf;
+		//Equation for net biomass accumulation from Monteith
+		float availableCarbon = e * fs * lightPerLeaf;
 	  
-	  return availableCarbon;
+		return availableCarbon;
 	  
   }
   
@@ -185,8 +187,11 @@ public class Segment {
 	  Vector3 v = centerOfMass().minus(start); 
 	  float l = calculateDistance(v);
 	  float vxy = calculateXY(v); 
-	  float xF = (float) ((computeMassWithDescendants() + getMassOfLeaves()) * sParams.gravity * v.z / l);
-	  float zF = (float) ((computeMassWithDescendants() + getMassOfLeaves()) * sParams.gravity * vxy / l);
+	  //static field X should be accessed in a static way. STH 0630-2024
+	  //float xF = (float) ((computeMassWithDescendants() + getMassOfLeaves()) * sParams.gravity * v.z / l);
+	  //float zF = (float) ((computeMassWithDescendants() + getMassOfLeaves()) * sParams.gravity * vxy / l);
+	  float xF = (float) ((computeMassWithDescendants() + getMassOfLeaves()) * SimulationParams.gravity * v.z / l);
+	  float zF = (float) ((computeMassWithDescendants() + getMassOfLeaves()) * SimulationParams.gravity * vxy / l);
 	  float stressG = computeStress(xF, zF, l, segWidth);
 	  
 	  //stress from wind
@@ -231,7 +236,9 @@ public class Segment {
 		  float totalForce = 0;
 		  if (isLeaf()) {
 			  float leafArea = tParams.leafArea();
-			  totalForce += 0.5 * tParams.dragCoefficient() * sParams.airDensity * leafArea * sParams.maxWindSpeed * sParams.maxWindSpeed;
+			  //static field X should be accessed in a static way. STH 0630-2024
+			  //totalForce += 0.5 * tParams.dragCoefficient() * sParams.airDensity * leafArea * sParams.maxWindSpeed * sParams.maxWindSpeed;
+			  totalForce += 0.5 * tParams.dragCoefficient() * SimulationParams.airDensity * leafArea * SimulationParams.maxWindSpeed * SimulationParams.maxWindSpeed;
 		  }
 		  for (Segment seg: children)
 		  {
@@ -394,7 +401,9 @@ public class Segment {
   		gl.glPushMatrix();
   		if (isLeaf()) {
   	        // Draw leaves. Set material properties.
-  			if (sParams.roundLeaves) {
+			//static field X should be accessed in a static way. STH 0630-2024
+  			//if (sParams.roundLeaves) {
+			if (SimulationParams.roundLeaves) {
   				float[] rgba = {0f, 0.3f, 0f};
   				gl.glMaterialfv(GL.GL_FRONT, GL2.GL_AMBIENT, rgba, 0);
   				gl.glMaterialfv(GL.GL_FRONT, GL2.GL_SPECULAR, rgba, 0);
