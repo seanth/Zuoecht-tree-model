@@ -39,7 +39,10 @@ import com.jogamp.opengl.util.texture.TextureIO;
 
   //A 3D Canvas to draw/display trees.
  
-public class TreeCanvas extends GLCanvas implements GLEventListener, MouseMotionListener, MouseListener, GLAutoDrawable{
+//Redundant superinterface GLAutoDrawable for the type TreeCanvas, already defined by AWTGLAutoDrawable
+//STH 0630-2024  
+//public class TreeCanvas extends GLCanvas implements GLEventListener, MouseMotionListener, MouseListener, GLAutoDrawable{
+public class TreeCanvas extends GLCanvas implements GLEventListener, MouseMotionListener, MouseListener{
 
     /** Serial version UID. */
     private static final long serialVersionUID = 1L;
@@ -108,7 +111,9 @@ public class TreeCanvas extends GLCanvas implements GLEventListener, MouseMotion
         glu = new GLU();
         
         try {
-        	InputStream stream = getClass().getResourceAsStream("leaf128.png");
+            String resourcePath = "leaf128.png";
+        	//InputStream stream = getClass().getResourceAsStream("leaf128.png");
+            InputStream stream = getClass().getResourceAsStream(resourcePath);
         	TextureData data = TextureIO.newTextureData(gl.getGLProfile(), stream, false, TextureIO.PNG);
         	leafTexture = TextureIO.newTexture(data);
         }
