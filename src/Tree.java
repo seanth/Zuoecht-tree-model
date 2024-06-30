@@ -167,7 +167,9 @@ public class Tree {
 		float mass = 0;
 		ArrayList<Segment> segments = root.getDescendantsPlusThis();
 		for (Segment s: segments) {
-			if (s.getWidth() > simParams.timberDiameter) {
+			// static field X should be accessed in a static way. STH 0630-2024
+			//if (s.getWidth() > simParams.timberDiameter) {
+			if (s.getWidth() > SimulationParams.timberDiameter) {
 				mass += s.getSegmentMass();
 			}
 		}
