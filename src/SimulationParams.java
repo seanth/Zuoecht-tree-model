@@ -25,17 +25,30 @@ public class SimulationParams {
 		SimulationParams s = new SimulationParams();
 		s.size = new Vector3(10,10,7);
 		s.vGridCellSize = .08f;
-		s.maxWindSpeed = 20.0f; 
-		s.gravity = 9.8f; 
-		s.totalSunlightIncident = 6636f; 
-		s.airDensity = 1.2f; 
-		s.numTreesX = 1; 	
-		s.numTreesY = 1; 
-		s.roundLeaves = false; 
-		s.cameraDistance = 1; 
 		float[] light = {0.6f, 0.1f, 0.1f, 0.1f, 0.1f}; 
-		s.startLightDirections = light;
-		s.timberDiameter = .13f;
+		// s.maxWindSpeed = 20.0f; 
+		// s.gravity = 9.8f; 
+		// s.totalSunlightIncident = 6636f; 
+		// s.airDensity = 1.2f; 
+		// s.numTreesX = 1; 	
+		// s.numTreesY = 1; 
+		// s.roundLeaves = false; 
+		// s.cameraDistance = 1; 
+		// s.startLightDirections = light;
+		// s.timberDiameter = .13f;
+		// static field should be accessed in a static way. STH 0630-2024
+		SimulationParams.maxWindSpeed = 20.0f; 
+		SimulationParams.gravity = 9.8f; 
+		SimulationParams.totalSunlightIncident = 6636f; 
+		SimulationParams.airDensity = 1.2f; 
+		SimulationParams.numTreesX = 1; 	
+		SimulationParams.numTreesY = 1; 
+		SimulationParams.roundLeaves = false; 
+		SimulationParams.cameraDistance = 1; 
+		SimulationParams.startLightDirections = light;
+		SimulationParams.timberDiameter = .13f;
+
+
 		return s;
 	}
 
